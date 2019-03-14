@@ -1,4 +1,3 @@
-const ObjectID = require('mongodb').ObjectID;
 const User = require('../../models/user.model');
 
 const createUserDAO = async (body) => {
@@ -16,13 +15,13 @@ const createUserDAO = async (body) => {
     return await newUser.save();
 }
 const readUserDAO = async (id) => {
-    return await User.findOne({"_id": new ObjectID(id)});
+    return await User.findOne({"_id": id});
 }
 const updateUserDAO = async (id, body) => {
     return await User.findByIdAndUpdate(id, body)
 }
 const deleteUserDAO = async (id) => {
-    return await User.deleteOne({"_id": new ObjectID(id)});
+    return await User.deleteOne({"_id": id});
 }
 const listUsersDAO = async () => {
     return await User.find();
