@@ -5,6 +5,8 @@ const userSchema = new Schema({
     name: String,
     company: String,
     salary: Number,
+    userName: String,
+    password: String,
     address: {
         city: String,
         number: Number,
@@ -12,4 +14,5 @@ const userSchema = new Schema({
         street: String
     }
 });
+
 module.exports = mongoose.model('User', userSchema);
