@@ -31,7 +31,4 @@ const tokenChecker = async (req, res, next) => {
     }
 }
 
-module.exports = {
-    authUser,
-    tokenChecker
-}
+module.exports = { authUser, tokenChecker }

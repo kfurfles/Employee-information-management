@@ -8,7 +8,4 @@ const descrypt = (pass) => {
     return cryptr.decrypt(pass);
 }
 
-module.exports = {
-    encrypt,
-    descrypt
-}
+module.exports = { encrypt, descrypt }
