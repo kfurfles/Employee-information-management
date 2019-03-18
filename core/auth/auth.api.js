@@ -7,9 +7,9 @@ const authUser = async (req, res) => {
         password = req.body.password;
     try {
         let userData = await authDAO.authUserDAO(user);
-        let descryptedPass = encrypting.descrypt(userData.password);
+        let checkedPass = await encrypting.descrypt(password, userData.password);
         
-        if (password == descryptedPass) {
+        if (checkedPass) {
             let token = tokenGenerator.tokenGenerator({id: userData.userName});
             res.status(200).json(token);
         }

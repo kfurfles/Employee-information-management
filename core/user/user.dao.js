@@ -2,7 +2,7 @@ const User = require('../../models/user.model');
 const encrypting = require('../../util/encrypt');
 
 const createUserDAO = async (body) => {
-    let password = encrypting.encrypt(body.password);
+    let password = await encrypting.encrypt(body.password);
     let newUser = new User({
         name: body.name,
         company: body.company,

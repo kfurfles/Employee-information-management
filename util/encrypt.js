@@ -1,11 +1,13 @@
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr(process.env.SECRET);
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-const encrypt = (pass) => {
-    return cryptr.encrypt(pass);
+const encrypt = async (pass) => {
+    let hash = await bcrypt.hash(pass, saltRounds);
+    return hash;
 }
-const descrypt = (pass) => {
-    return cryptr.decrypt(pass);
+const descrypt = async (pass, hash) => {
+    let res = await bcrypt.compare(pass, hash);
+    return res;
 }
 
 module.exports = { encrypt, descrypt }

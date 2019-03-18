@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/dougbatista/treinamento-everis#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "cryptr": "^4.0.2",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
