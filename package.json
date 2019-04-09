@@ -4,25 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup:client": "cd client && yarn",
+    "setup:server": "cd server && yarn",
+    "setup": "yarn setup:client && yarn setup:server"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dougbatista/treinamento-everis.git"
+    "url": "git+https://github.com/kfurfles/treinamento-everis.git"
   },
-  "author": "everis",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dougbatista/treinamento-everis/issues"
+    "url": "https://github.com/kfurfles/treinamento-everis/issues"
   },
-  "homepage": "https://github.com/dougbatista/treinamento-everis#readme",
-  "dependencies": {
-    "bcrypt": "^3.0.4",
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
-    "dotenv": "^7.0.0",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.4.19"
-  }
+  "homepage": "https://github.com/kfurfles/treinamento-everis#readme"
 }
