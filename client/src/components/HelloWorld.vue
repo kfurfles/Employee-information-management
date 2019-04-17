@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello container">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -56,26 +56,17 @@
         </a>
       </li>
       <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
+        <a href="http://vuex.vuejs.org/" target="_blank">
           vuex
         </a>
       </li>
       <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
+        <a href="http://vue-loader.vuejs.org/" target="_blank">
           vue-loader
         </a>
       </li>
       <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
+        <a href="https://github.com/vuejs/awesome-vue" target="_blank">
           awesome-vue
         </a>
       </li>
