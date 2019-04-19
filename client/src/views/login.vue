@@ -9,7 +9,7 @@
             <label for="inputPassword" class="sr-only">Senha</label>
             <input v-model="form.password" type="password" id="inputPassword" class="form-control mt-2" placeholder="Password" required="">
             
-            <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Entrar</button>
+            <button :class="['btn btn-lg btn-primary btn-block mt-3',{ disabled: busy }]" type="submit">{{ busy ? 'loading ...' : 'Enter' }}</button>
             <p class="mt-5 mb-3 text-muted">© 2019</p>
         </form>
     </div>
@@ -19,14 +19,25 @@
 import { Auth } from '@/services/api'
 export default {
     data: () => ({
+        busy: false,
         form: {
             user: '',
             password: ''
         }
     }),
     methods:{
-        login(){
-            this.$store.dispatch('Auth/Auth',this.form)
+        async login(){
+            try {
+                this.busy = true
+                const { id: name } = await this.$store.dispatch('Auth/Auth',this.form)
+                alert(`Bem vindo ${name}`)
+            } catch (error) {
+                console.error(error)
+                console.error('deu ruim')
+            }
+            finally {
+                this.busy = false
+            }
         }
     }
 }

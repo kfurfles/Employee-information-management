@@ -1,5 +1,5 @@
 export default{
     message: 'Teste',
-    active: true,
+    active: false,
     variation: 'primary'
 }

@@ -1,48 +1,47 @@
 <template>
     <div class="container">
-        <b-alert 
-            ref="alert"
-            dismissible
-            @dismiss="dismissed"  
-            :variant="type">{{ msg }}</b-alert>
+        <div :class="definitions" role="alert">
+            <b>{{ message }}</b>
+            <button type="button" @click="dismissed" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
-import BAlert from 'bootstrap-vue/es/components/alert/alert'
 import { mapState, mapActions } from 'vuex'
 export default {
-    components:{
-        BAlert
-    },
-    watch:{
-        statusMsg(nValue){
-            if (nValue) {
-                this.setState(true)
-            } else {
-                this.setState(false)
-            }
-        }
-    },
     computed:{
-        ...mapState('Message',{ 
-            'statusMsg' : 'active',
-            'type': 'variation',
-            'msg': 'message'
-        }),
+        ...mapState('Message',[
+            'active', 
+            'variation', 
+            'message'
+        ]),
+        definitions(){
+            const variation = `alert-${this.variation || 'primary'}`
+            const areShowing = this.active ? 'show' : 'hidden'
+            return `alert ${variation} alert-dismissible ${areShowing}`
+        }
     },
     methods:{
         ...mapActions('Message',['dismissed']),
-        setState(val){
-            this.$refs.alert.localShow = val
-        }
     },
-    mounted(){
-        this.setState(this.statusMsg)
-    }
 }
 </script>
 
-<style>
+<style scoped>
+.close{    
+    top: 50%;
+    transform: translateY(-50%);
+}
 
+.hidden{
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+}
 </style>
