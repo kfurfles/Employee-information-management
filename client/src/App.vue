@@ -1,16 +1,24 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+	<div id="app">
+		<message/>
+		<router-container/>
+	</div>
 </template>
 
 <script>
+import Message from '@/components/globals/message'
+import RouterContainer from '@/containers/router-view'
 export default {
-  name: 'App'
+	name: 'App',
+	components:{
+		Message,
+		'router-container': RouterContainer
+	}
 }
 </script>
 
 <style lang="scss">
+@import '~bootstrap-vue/src/index.scss';
 @import "~bootstrap/scss/bootstrap";
 
 #app {

@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/kfurfles/treinamento-everis/issues"
   },
-  "homepage": "https://github.com/kfurfles/treinamento-everis#readme"
+  "homepage": "https://github.com/kfurfles/treinamento-everis#readme",
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.18",
+    "vue": "^2.6.10",
+    "vuex": "^3.1.0"
+  }
 }

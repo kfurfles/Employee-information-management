@@ -5,4 +5,8 @@ export function isNull(value,param){
         return true
     }
 }
+
+export function validationParams(objs){
+    return objs.filter(obj => !obj).length === 0 ? true: false  
+}
  

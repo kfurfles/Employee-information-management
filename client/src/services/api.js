@@ -1,8 +1,11 @@
 import { instance } from './config'
+import { validationParams } from './../helpers/validators'
 
-export function Auth({ user, password }) {
-    
-    return instance.get('/auth',{
-
-    })
+export function Authenticate({ user, password }) {
+    try {
+        validationParams([user,password])
+        return instance.post('/auth',{ user, password })
+    } catch (error) {
+        console.error(error)
+    }
 }
