@@ -17,4 +17,8 @@ export default{
         dispatch('setVariation', 'danger')
         dispatch('setMessage', payload)
     },
+    setSuccessMessage({ dispatch }, payload){
+        dispatch('setVariation', 'success')
+        dispatch('setMessage', payload)
+    },
 }
