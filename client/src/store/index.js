@@ -1,13 +1,15 @@
-import Vue from 'vue'
+import vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+vue.use(Vuex)
 import Auth from './auth'
 import Message from './message'
+import Users from './users'
 
 export default new Vuex.Store({
     modules:{
         Auth,
-        Message
+        Message,
+        Users
     }
 })

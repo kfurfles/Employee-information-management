@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div class="d-flex align-items-center justify-content-center text-center login">
         <form class="form-signin" @submit.prevent="login">
             <img class="mb-4" src="https://www.inova.unicamp.br/wp-content/uploads/2016/11/Logo_everis.jpg" alt="" width="150" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
@@ -43,7 +43,8 @@ export default {
             try {
                 this.$store.dispatch('Message/dismissed')
                 this.busy = true
-                const { id: name } = await this.$store.dispatch('Auth/Auth',this.form)
+                const { id } = await this.$store.dispatch('Auth/Auth',this.form)
+                console.log(id)
                 this.auth = true
                 this.$store.dispatch('Message/setSuccessMessage', `Welcome ${name}`)
                 setTimeout(() =>{
@@ -59,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss">
+.login{
+    height: 90vh;
+}
 .form-signin {
     width: 100%;
     max-width: 330px;

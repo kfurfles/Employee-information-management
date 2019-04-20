@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div :class="`container ${active ? 'mt-2' : ''}`">
         <div :class="definitions" role="alert">
             <b>{{ message }}</b>
             <button type="button" @click="dismissed" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +21,7 @@ export default {
         definitions(){
             const variation = `alert-${this.variation || 'primary'}`
             const areShowing = this.active ? 'show' : 'hidden'
-            return `alert ${variation} alert-dismissible ${areShowing}`
+            return `alert ${variation} alert-dismissible text-center ${areShowing}`
         }
     },
     methods:{
