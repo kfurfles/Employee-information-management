@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
-                dashboard
+                <ev-dashboard-card/>
             </div>
         </div>
         <div class="row">
@@ -15,6 +15,7 @@
 
 <script>
 import DashboardTable from '@/components/dashboard/fullTableDashboard'
+import DashboardCard from '@/components/dashboard/card'
 import { mapState, mapGetters } from 'vuex';
 
 export default {
@@ -22,7 +23,8 @@ export default {
         ...mapState('Users',['list']),
     },
     components:{
-        'ev-dashboard-table': DashboardTable
+        'ev-dashboard-table': DashboardTable,
+        'ev-dashboard-card': DashboardCard
     },
     mounted(){
         this.$store.dispatch('Users/getUsers')

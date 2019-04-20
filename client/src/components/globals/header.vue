@@ -32,7 +32,13 @@ import HamburgerIcon from '@/components/globals/hamburger.vue'
 export default {
     components:{
         'ev-hamburger-icon': HamburgerIcon
-    }
+    },
+    watch: {
+        '$route'(newValue){
+            this.$refs.userOptions.classList.remove('show')
+            this.$refs.navs.classList.remove('show')
+        }
+    },
 }
 </script>
 
