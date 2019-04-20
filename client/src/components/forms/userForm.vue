@@ -1,15 +1,16 @@
 <template>
     <ev-container>
         <form @submit.prevent="$emit('submit',value)">
-            <h1 class="text-center">New User</h1>
+            <h1 class="text-center">{{ messages.title }}</h1>
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-4" v-for="prop in formList" :key="prop">
-                    <ev-input  :value="getValue(schema[prop])" @input="setData($event, schema[prop])" :config="schema[prop]"></ev-input>
+
+                    <ev-input :value="getValue(schema[prop])" @input="setData($event, schema[prop])" :config="schema[prop]"></ev-input>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <ev-submit :busy="busy" :disabled="disabled" :message="message" variation="success"></ev-submit>
+                    <ev-submit :busy="busy" :disabled="disabled" :message="messages.button" variation="success"></ev-submit>
                 </div>
             </div>
         </form>
@@ -35,16 +36,19 @@ export default {
         disabled:{
             type: Boolean,
             default: false
+        },
+        update:{
+            type: Boolean,
+            default: false
         }
     },
     data: () => ({
-        message: 'Create User',
-        schema:{
+        defaultSchema:{
             name: getParams("name","Name"),
             userName: getParams("userName","User name","userName"),
-            password: getParams("password","Password","password", true, "password"),
+            // password: getParams("password","Password","password", true, "password"),
             company: getParams("company","Company"),
-            salary: getParams("salary","Salary"),
+            salary: getParams("salary","Salary","salary","number", true),
             city: getParams("address.city","City"),
             neighborhood: getParams("address.neighborhood","Neighborhood"),
             street: getParams("address.street","street"),
@@ -56,9 +60,22 @@ export default {
         'ev-submit': ButtonSubmit
     },
     computed:{
+        messages() {
+            return {
+                title:  this.update ? `Update User: ${this.value.userName}` : 'Create User',
+                button: this.update ? 'Update User' : 'Create User'
+            }
+        }, 
         formList(){
             return Object.keys(this.schema)
         },
+        schema(){
+            let schema = this.defaultSchema
+            if(!this.update){
+                schema['password'] = getParams("password","Password","password", "password")
+            }
+            return schema
+        }
     },
     methods:{
         setData(value,{ dataPath }){
@@ -71,14 +88,15 @@ export default {
         }
     },
 }
-function getParams(dataPath,label,name,required = true,type = 'text'){
+function getParams(dataPath,label,name,type = 'text',currency = false){
     return {
         dataPath: dataPath,
         label: label,
         name: name || label.toLowerCase(),
         placeholder: `Your ${label}`,
-        required: required,
-        type: type
+        required: true,
+        type: type,
+        currency: currency
     }
 }
 </script>

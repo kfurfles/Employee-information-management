@@ -4,7 +4,7 @@ import { mutations } from './mutations'
 let renew; 
 
 export default{
-    async Auth({ dispatch, getters }, payload){
+    async Login({ dispatch, getters }, payload){
         try {
             const response = await Authenticate(payload)
             await dispatch('setUserToken', response)
@@ -18,16 +18,22 @@ export default{
             await dispatch('Message/setErrorMessage', error.response.data, { root: true })
         }
     },
+    logout({ dispatch }){
+        dispatch('resetState', null, { root: true })
+    },
     async setUserToken({ commit }, payload){
         SET_TOKEN(payload)
         await commit(mutations.SET_USER_INFO, payload)
         return payload
     },
     reValidateToken({ dispatch }, payload){
-        setInterval(async ()=>{
+        renew = setInterval(async ()=>{
             const response = await Authenticate(payload)
             await dispatch('setUserToken', response)
             console.log('NEW TOKEN')
         }, 60000 * 20)
+    },
+    resetState({ dispatch }){
+        dispatch('setUserToken','')
     }
 }

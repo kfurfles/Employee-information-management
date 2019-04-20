@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<ev-header/>
+		<ev-header v-if="isAuth"/>
 		<ev-message/>
 		<router-container/>
 	</div>
@@ -21,6 +21,11 @@ export default {
 		'ev-message': Message,
 		'ev-header': Header,
 		'router-container': RouterContainer
+	},
+	computed:{
+		isAuth(){
+			return this.$store.getters["Auth/isAuth"] && this.$route.name !== "Login"
+		}
 	}
 }
 </script>

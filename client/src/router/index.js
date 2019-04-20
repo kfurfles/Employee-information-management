@@ -2,6 +2,7 @@ import vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from '@/views/dashboard'
 import Login from '@/views/login'
+import Logout from '@/views/logout.vue'
 import User from '@/views/user'
 import Page404 from '@/views/page404'
 import { authUser as AuthUserGuard } from './guards'
@@ -12,6 +13,11 @@ vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
+    },
     {
       path: '/login',
       name: 'Login',
@@ -46,6 +52,12 @@ export default new Router({
     {
       path: '/user',
       name: 'User',
+      component: User,
+      beforeEnter: AuthUserGuard
+    },
+    {
+      path: '/user/:id',
+      name: 'UpdateUser',
       component: User,
       beforeEnter: AuthUserGuard
     },

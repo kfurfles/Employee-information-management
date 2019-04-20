@@ -43,10 +43,9 @@ export default {
             try {
                 this.$store.dispatch('Message/dismissed')
                 this.busy = true
-                const { id } = await this.$store.dispatch('Auth/Auth',this.form)
-                console.log(id)
+                const { id } = await this.$store.dispatch('Auth/Login',this.form)
                 this.auth = true
-                this.$store.dispatch('Message/setSuccessMessage', `Welcome ${name}`)
+                this.$store.dispatch('Message/setSuccessMessage', `Welcome ${id}`)
                 setTimeout(() =>{
                     this.$store.dispatch('Message/dismissed')
                     this.$router.push({ name: 'Dashboard' })

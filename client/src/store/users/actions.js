@@ -3,7 +3,9 @@ import { mutations } from './mutations'
 import { 
     Get_Users,
     Create_User,
-    Delete_User 
+    Delete_User,
+    Get_User,
+    Update_User, 
 } from '@/services/api'
 
 export default{
@@ -11,11 +13,24 @@ export default{
         const list = await Get_Users()
         commit(mutations.SET_USER_LIST,list)
     },
+    async getUser({}, payload){
+        const user = await Get_User(payload)
+        return user
+    },
     async createUser({ dispatch }, payload){
         try {
             const newUser = await Create_User(payload)
             return newUser
         } catch (error) {
+            await dispatch('Message/setErrorMessage', 'Ops !! Something has wrong', { root: true })
+        }
+    },
+    async updateUser({ dispatch }, payload){
+        try {
+            const updatedUser = await Update_User(payload)
+            return updatedUser
+        } catch (error) {
+            console.error(error)
             await dispatch('Message/setErrorMessage', 'Ops !! Something has wrong', { root: true })
         }
     },
@@ -28,5 +43,8 @@ export default{
             console.error(error)
             await dispatch('Message/setErrorMessage', 'Ops !! Something has wrong', { root: true })
         }
+    },
+    resetState({ commit }){
+        commit(mutations.SET_RESET_STATE)
     }
 }

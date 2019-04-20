@@ -1,3 +1,5 @@
-export default{
+export const getDefaultState = () =>({
     list: []
-}
+})
+
+export default getDefaultState()

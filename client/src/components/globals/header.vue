@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <router-link class="navbar-brand" to="dashboard">Everis CRM System</router-link>
+        <router-link class="navbar-brand" to="/dashboard">Everis CRM System</router-link>
         <button class="navbar-toggler collapsed" type="button" @click="$refs.navs.classList.toggle('show')">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,10 +8,10 @@
         <div class="navbar-collapse collapse justify-content-md-center collapse" ref="navs">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <router-link class="nav-link" to="dashboard">Dashboard</router-link>
+                    <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="user">Create User</router-link>
+                    <router-link class="nav-link" to="/user">Create User</router-link>
                 </li>
             </ul>
 
@@ -19,7 +19,7 @@
                 <li class="nav-item dropdown userOptions__button">
                     <a class="nav-link dropdown-toggle" href="#" @click="$refs.userOptions.classList.toggle('show')">My User</a>
                     <div class="dropdown-menu userOptions__options" ref="userOptions">
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <router-link class="dropdown-item" to="/logout">Logout</router-link>
                     </div>
                 </li>
             </ul>

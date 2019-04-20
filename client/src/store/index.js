@@ -10,6 +10,13 @@ export default new Vuex.Store({
     modules:{
         Auth,
         Message,
-        Users
+        Users,
+    },
+    actions:{
+        resetState({ dispatch }){
+            dispatch('Message/resetState', null, { root: true })
+            dispatch('Auth/resetState', null, { root: true })
+            dispatch('Users/resetState', null, { root: true })
+        }
     }
 })

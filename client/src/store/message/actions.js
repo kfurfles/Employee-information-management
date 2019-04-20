@@ -30,5 +30,9 @@ export default{
             'Operation completed successfully!',
             'success'
         )
+    },
+    resetState({ commit, dispatch }){
+        dispatch('dismissed')
+        commit(mutations.SET_RESET_STATE)
     }
 }
