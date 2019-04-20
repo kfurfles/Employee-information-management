@@ -52,8 +52,9 @@ export default {
 
 .userOptions{
     &__options{
-            right: 0;
-            left: auto;
-        }
+        right: 0;
+        left: auto;
+        overflow: hidden;
     }
+}
 </style>
