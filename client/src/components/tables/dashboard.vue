@@ -16,6 +16,7 @@
 </template>
 
 <script>
+
 import BTable from 'bootstrap-vue/es/components/table/table'
 
 export default {

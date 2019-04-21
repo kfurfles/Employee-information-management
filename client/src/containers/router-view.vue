@@ -1,3 +1,3 @@
 <template>
-    <router-view class="container pt-3"/>
+    <router-view class="container-fluid pt-3"/>
 </template>
