@@ -11,7 +11,7 @@ const createUserDAO = async (body) => {
         password: password,
         address: {
             city: body.city,
-            numebr: body.number,
+            number: body.number,
             neighborhood: body.neighborhood,
             street: body.street
         }

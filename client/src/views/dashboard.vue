@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-5 mb-4">
-                <ev-dashboard-chart/>
-            </div>
-            <div class="col-12 col-md-7 ">
+            <div class="col-12 col-md-7">
                 <ev-dashboard-table :list="list"/>
+            </div>
+            <div class="col-12 col-md-5">
+                <ev-dashboard-chart/>
             </div>
         </div>
     </div>

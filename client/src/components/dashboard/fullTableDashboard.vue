@@ -1,5 +1,5 @@
 <template>
-    <ev-table :items="userList" @onEdit="edit" @onDel="del" :fields="fields"/>
+    <ev-table :items="list" @onEdit="edit" @onDel="del" :fields="fields"/>
 </template>
 
 <script>
@@ -24,15 +24,15 @@ export default {
                 { key: 'company' },
             ]
         },
-        userList(){
-            const lower = str => str ? str.toLowerCase() : ''
-            const ownUserName = this.getUser.id
-            return  this.list.filter(({ userName, name }) => {
-                name = lower(name)
-                userName = lower(userName)
-                return !(ownUserName === name || ownUserName === userName)
-            }) 
-        }
+        // userList(){
+        //     const lower = str => str ? str.toLowerCase() : ''
+        //     const ownUserName = this.getUser.id
+        //     return  this.list.filter(({ userName, name }) => {
+        //         name = lower(name)
+        //         userName = lower(userName)
+        //         return !(ownUserName === name || ownUserName === userName)
+        //     }) 
+        // }
     },
     methods:{
         edit({ _id }){

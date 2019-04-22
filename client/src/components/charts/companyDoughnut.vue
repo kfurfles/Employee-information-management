@@ -1,5 +1,5 @@
 <template>
-    <ev-container>
+    <ev-container class="chart">
         <div class="d-flex align-item-center justify-center">
             <canvas ref="chart"></canvas>
         </div>
@@ -39,6 +39,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <ev-container class="text-center mt-5">
+    <ev-container class="text-center mt-5 container">
         <h2>Saindo ...</h2>
     </ev-container>
 </template>

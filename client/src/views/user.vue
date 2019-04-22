@@ -1,7 +1,7 @@
 <template>
 <div class="mt-3 mb-3">
     <ev-form-user 
-        :class=" error ? 'border border-danger' : ''" 
+        :class=" error ? 'border border-danger form-user' : 'form-user'" 
         v-model="formatedData" 
         :disabled="disabled" 
         :busy="busy"
@@ -19,16 +19,16 @@ export default {
         error: false,
         disabled: false,
         formatedData: {
-            name: '',
-            userName: '',
-            password: '',
-            company: '',
-            salary: '',
+            name: 'Pedro',
+            userName: 'Pedro_001',
+            password: '1234567',
+            company: 'Google',
+            salary: '1000',
             address: {
-                city: '',
-                number: '',
-                neighborhood: '',
-                street: ''
+                city: 'Centro',
+                number: '10',
+                neighborhood: 'Luz',
+                street: 'rua da luz'
             }
         }
     }),
@@ -108,5 +108,8 @@ export default {
 </script>
 
 <style>
-
+.form-user{
+    max-width: 800px;
+    margin: auto;
+}
 </style>
