@@ -11,7 +11,9 @@
                     show-empty
                     :current-page="currentPage"
                     :per-page="perPage"
-                    :items="items" 
+                    :items="items"
+                    :filter="filter"
+                    @filtered="onFiltered" 
                     :fields="fields">
                     <template #actions="{ item }">
                         <div class="d-flex">                
@@ -30,7 +32,7 @@
             <div class="col">
                 <b-pagination
                     v-model="currentPage"
-                    :total-rows="items.length"
+                    :total-rows="totalRows"
                     :per-page="perPage"
                     class="ev-dashboard-table__pagination"
                 ></b-pagination>
@@ -57,8 +59,14 @@ export default {
     data: () => ({
         currentPage: 1,
         perPage: 5,
-        filter: ''
+        filter: '',
+        totalRows: '',
     }),
+    watch: {
+        items(val){
+            this.totalRows = val.length
+        }
+    },
     components:{
         BTable,
         BPagination,
@@ -80,6 +88,11 @@ export default {
                     this.$emit('onDel',data)
                 }
             })
+        },
+        onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            this.totalRows = filteredItems.length
+            this.currentPage = 1
         }
     }
 }
