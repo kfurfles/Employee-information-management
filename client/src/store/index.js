@@ -5,12 +5,14 @@ vue.use(Vuex)
 import Auth from './auth'
 import Message from './message'
 import Users from './users'
+import Dashboard from './dashboard'
 
 export default new Vuex.Store({
     modules:{
         Auth,
         Message,
         Users,
+        Dashboard,
     },
     actions:{
         resetState({ dispatch }){

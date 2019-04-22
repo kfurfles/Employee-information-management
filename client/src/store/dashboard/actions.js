@@ -1,5 +1,5 @@
 import { Authenticate } from '@/services/api'
-import { SET_TOKEN } from '@/helpers/token'
+import { GET_TOKEN, SET_TOKEN } from '@/helpers/token'
 import { mutations } from './mutations'
 let renew; 
 

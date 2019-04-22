@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="row">
-            <div v-for="(insight,i) of insights" :key="i" class="col-12 col-md-4 mb-3">
+            <div v-for="(insight,i) of allInsights" :key="i" class="col-12 col-md-4 mb-3">
                 <ev-dashboard-card :info="insight.data" :variant="insight.variant"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-7 dashboard__table">
                 <ev-dashboard-table :list="list"/>
             </div>
             <div class="col-12 col-md-5">
@@ -25,37 +25,38 @@ import { mapState, mapGetters } from 'vuex';
 export default {
     computed:{
         ...mapState('Users',['list']),
-        insights(){
-            return [
-                { 
-                    variant: 'blue',
-                    data: {
-                        title: 'Registered users',
-                        mainData: '20', 
-                        footerTitle: 'Last logged in user',
-                        footerData: 'João da Silva',
-                    } 
-                },
-                { 
-                    variant: 'green',
-                    data: {
-                        title: 'Companies in the system',
-                        footerTitle: 'Company with more employees',
-                        footerData: 'Everis',
-                        mainData: '10' 
-                    } 
-                },
-                { 
-                    variant: 'pink',
-                    data: {
-                        title: 'Average salary',
-                        footerTitle: 'Highest salary | Lower salary',
-                        footerData: '1000 | 1',
-                        mainData: '20' 
-                    } 
-                }
-            ]
-        }
+        ...mapGetters('Dashboard',['allInsights']),
+        // insights(){
+        //     return [
+        //         { 
+        //             variant: 'blue',
+        //             data: {
+        //                 title: 'Registered users',
+        //                 mainData: '20', 
+        //                 footerTitle: 'Last logged in user',
+        //                 footerData: 'João da Silva',
+        //             } 
+        //         },
+        //         { 
+        //             variant: 'green',
+        //             data: {
+        //                 title: 'Companies in the system',
+        //                 footerTitle: 'Company with more employees',
+        //                 footerData: 'Everis',
+        //                 mainData: '10' 
+        //             } 
+        //         },
+        //         { 
+        //             variant: 'pink',
+        //             data: {
+        //                 title: 'Average salary',
+        //                 footerTitle: 'Highest salary | Lower salary',
+        //                 footerData: '1000 | 1',
+        //                 mainData: '20' 
+        //             } 
+        //         }
+        //     ]
+        // }
     },
     components:{
         'ev-dashboard-table': DashboardTable,
@@ -68,6 +69,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.dashboard{
+    
+    @media (max-width: 765px) {
+        &__table{
+            margin-bottom: 1rem;
+        }
+    }
+}
 </style>

@@ -6,7 +6,9 @@
                 <span>{{ info.mainData }}</span>
             </h2>
             <p class="d-flex card__footer-info">
-                <span class="mr-auto">{{ info.footerTitle }}</span> 
+                <span class="mr-auto">
+                    {{ info.footerTitle }}
+                </span> 
                 <span><b>{{ info.footerData }}</b></span>
             </p>
     </ev-container>

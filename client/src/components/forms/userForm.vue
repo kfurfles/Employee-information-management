@@ -4,7 +4,6 @@
             <h1 class="text-center">{{ messages.title }}</h1>
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-md-4" v-for="prop in formList" :key="prop">
-
                     <ev-input :value="getValue(schema[prop])" @input="setData($event, schema[prop])" :config="schema[prop]"></ev-input>
                 </div>
             </div>

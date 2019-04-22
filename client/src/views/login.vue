@@ -45,9 +45,15 @@ export default {
                 this.busy = true
                 const { id } = await this.$store.dispatch('Auth/Login',this.form)
                 this.auth = true
-                this.$store.dispatch('Message/setSuccessMessage', `Welcome ${id}`)
+
+                this.$swal.fire({
+                    title: 'Hello',
+                    text: `Welcome ${id}`,
+                    type: 'success',
+                    timer: '2000'
+                })
+
                 setTimeout(() =>{
-                    this.$store.dispatch('Message/dismissed')
                     this.$router.push({ name: 'Dashboard' })
                 }, 2000)
             } catch (error) {

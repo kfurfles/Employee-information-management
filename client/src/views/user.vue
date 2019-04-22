@@ -2,7 +2,7 @@
 <div class="mt-3 mb-3">
     <ev-form-user 
         :class=" error ? 'border border-danger form-user' : 'form-user'" 
-        v-model="formatedData" 
+        v-model="formatedData"
         :disabled="disabled" 
         :busy="busy"
         :update="updated" 
