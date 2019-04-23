@@ -1,5 +1,5 @@
 import { mutations } from './mutations'
-
+import { GET_TOKEN } from '@/helpers/token'
 import { 
     Get_Users,
     Create_User,
@@ -9,9 +9,19 @@ import {
 } from '@/services/api'
 
 export default{
-    async getUsers({ commit }){
-        const list = await Get_Users()
-        commit(mutations.SET_USER_LIST,list)
+    async getUsers({ commit, dispatch }){
+        try {
+            const list = await Get_Users()
+            commit(mutations.SET_USER_LIST,list)
+        } catch (error) {
+            console.error(error)
+            if (GET_TOKEN()) {
+                setTimeout(() => {
+                    location.href = '/logout'
+                }, 2000);
+                dispatch('Message/setErrorMessage', 'Desculpe sua sessão expirou 😅', { root: true })
+            }
+        }
     },
     async getUser({}, payload){
         const user = await Get_User(payload)

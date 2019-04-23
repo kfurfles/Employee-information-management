@@ -19,16 +19,16 @@ export default {
         error: false,
         disabled: false,
         formatedData: {
-            name: 'André',
-            userName: 'André_001',
-            password: '1234567',
-            company: 'Yahoo',
-            salary: '1000',
+            name: '',
+            userName: '',
+            password: '',
+            company: '',
+            salary: '',
             address: {
-                city: 'Centro',
-                number: '10',
-                neighborhood: 'Luz',
-                street: 'rua da luz'
+                city: '',
+                number: '',
+                neighborhood: '',
+                street: ''
             }
         }
     }),

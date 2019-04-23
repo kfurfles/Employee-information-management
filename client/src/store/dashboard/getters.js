@@ -6,6 +6,11 @@ export default{
     userList(state, getter, rootState){
         return rootState.Users.list
     },
+    formatedUserList(state, getter){
+        return getter.userList.map(u =>{
+
+        })
+    },
     insighUsers(state, getter, rootState, rootGetters){
         const { name = '' } = rootGetters["Users/lastRegisteredUSer"] || {}
         return { 
@@ -51,7 +56,6 @@ export default{
             const highest = listSalary[listSalary.length - 1]
         
             const maxWords = ({ name },n) => `${name.substr(0,n)}...`
-            const fSalary = ({ salary }) => salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
             
             const highestMessage = `Highest salary: ${maxWords(highest,10)} || R$ ${fSalary(highest)}`
             // const leftMessage = `Highest salary: ${maxWords(highest,10)} ||  salary: R$${maxWords(lowest,10)}`
@@ -188,4 +192,8 @@ function objToArray(obj){
             users: obj[key] 
         }
     }) 
+}
+
+function fSalary({ salary }){
+    return salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
 }

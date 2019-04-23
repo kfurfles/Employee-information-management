@@ -43,12 +43,11 @@ export default {
             try {
                 this.$store.dispatch('Message/dismissed')
                 this.busy = true
-                const { id } = await this.$store.dispatch('Auth/Login',this.form)
+                await this.$store.dispatch('Auth/Login',this.form)
                 this.auth = true
 
                 this.$swal.fire({
-                    title: 'Hello',
-                    text: `Welcome ${id}`,
+                    title: 'Welcome',
                     type: 'success',
                     timer: '2000'
                 })

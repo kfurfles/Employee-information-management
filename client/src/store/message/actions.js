@@ -15,14 +15,19 @@ export default{
         commit(mutations.SET_MESSAGE_STATE, true)
     },
     setErrorMessage({ dispatch }, payload){
-        dispatch('setVariation', 'danger')
-        dispatch('setMessage', payload)
-        console.error(payload)
+        Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: payload,
+        })
         throw Error(payload)
     },
     setSuccessMessage({ dispatch }, payload){
-        dispatch('setVariation', 'success')
-        dispatch('setMessage', payload)
+        Swal.fire({
+            type: 'success',
+            title: 'Nice!',
+            text: payload,
+        })
     },
     AlertSuccess(){
         Swal.fire(
