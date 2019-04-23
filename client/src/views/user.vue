@@ -19,10 +19,10 @@ export default {
         error: false,
         disabled: false,
         formatedData: {
-            name: 'Pedro',
-            userName: 'Pedro_001',
+            name: 'André',
+            userName: 'André_001',
             password: '1234567',
-            company: 'Google',
+            company: 'Yahoo',
             salary: '1000',
             address: {
                 city: 'Centro',

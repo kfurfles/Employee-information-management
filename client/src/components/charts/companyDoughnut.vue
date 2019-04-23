@@ -9,27 +9,34 @@
 <script>
 import Chart from 'chart.js';
 
+const data = {"labels":["None","Others","google","everis","nubank","yahoo"],"datasets":[{"backgroundColor":["#9966ff","#ff6384","#4bc0c0","#ff9f40","#36a2eb","#ffcd56"],"data":[1,1,4,3,2,1]}]}
 export default {
+    props:{
+        chartData:{
+            default: false,
+        }
+    },
+    data: () =>({
+        chart: ''
+    }),
+    watch:{
+        chartData(val){
+            this.updateChart()
+        }
+    },
     methods: {
-        createChart(ref, chartData){
-            const myChart = new Chart(this.$refs.chart, {
+        createChart(){
+            this.chart = new Chart(this.$refs.chart,{
                 type: 'doughnut',
-                data: {
-                    labels: [ 'Red', 'Yellow', 'Blue' ],
-                    datasets: [
-                        {
-                            label: ['one','two','three'],
-                            backgroundColor: [ '#3b9b73', '#bd5a4b', '#07b5d6' ],
-                            // borderColor: 'rgb(255, 99, 132)',
-                            data: [10,20,30]
-                        },
-                    ],
-
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    
-                },
-                options: {},
+                data: this.chartData
             });
+        },
+        updateChart(){
+            this.chart.data = {
+                ...this.chart.data,
+                ...this.chartData
+            }
+            this.chart.update()
         }
     },
     mounted() {

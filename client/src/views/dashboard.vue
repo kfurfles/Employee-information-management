@@ -10,7 +10,7 @@
                 <ev-dashboard-table :list="list"/>
             </div>
             <div class="col-12 col-md-5">
-                <ev-dashboard-chart/>
+                <ev-dashboard-chart :chartData="dataCompanyChart"/>
             </div>
         </div>
     </div>
@@ -25,38 +25,7 @@ import { mapState, mapGetters } from 'vuex';
 export default {
     computed:{
         ...mapState('Users',['list']),
-        ...mapGetters('Dashboard',['allInsights']),
-        // insights(){
-        //     return [
-        //         { 
-        //             variant: 'blue',
-        //             data: {
-        //                 title: 'Registered users',
-        //                 mainData: '20', 
-        //                 footerTitle: 'Last logged in user',
-        //                 footerData: 'João da Silva',
-        //             } 
-        //         },
-        //         { 
-        //             variant: 'green',
-        //             data: {
-        //                 title: 'Companies in the system',
-        //                 footerTitle: 'Company with more employees',
-        //                 footerData: 'Everis',
-        //                 mainData: '10' 
-        //             } 
-        //         },
-        //         { 
-        //             variant: 'pink',
-        //             data: {
-        //                 title: 'Average salary',
-        //                 footerTitle: 'Highest salary | Lower salary',
-        //                 footerData: '1000 | 1',
-        //                 mainData: '20' 
-        //             } 
-        //         }
-        //     ]
-        // }
+        ...mapGetters('Dashboard',['allInsights','dataCompanyChart']),
     },
     components:{
         'ev-dashboard-table': DashboardTable,

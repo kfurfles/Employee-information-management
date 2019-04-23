@@ -80,40 +80,91 @@ export default{
     companyData(state, getter){
         let ascOrder = (a,b) => a.users.length > b.users.length ? -1 : 1
         let list = formatedUserList(getter.userList).sort(ascOrder)
-        let noneItem = list.findIndex(el => el.company === 'none');
-        if (noneItem > -1) {
-            noneItem = list.splice(noneItem, 1);
+        let i = list.findIndex(el => el.company === 'none');
+        let noneList;
+        if (i > -1) {
+            noneList = list.splice(i, 1);
+        } else {
+            noneList = []
         }
 
         return {
-            none: noneItem,
+            none: noneList,
             list: list,
         }
     },
-    // topCompanyByUser(state,getter){
-    //     const { none, list } = getter.companyData
+    topCompanyByUser(state,getter){
+        const { none, list } = getter.companyData
+        const topFourColors = [ '#4bc0c0', '#ff9f40', '#36a2eb', '#ffcd56' ]
+        const countUsers = (acc,cur) => {
+            if(cur.hasOwnProperty('users')){
+                return acc + cur.users.length
+            } else {
+                return acc
+            }
+        }
 
-    //     // const others = list.splice(4)
-    //     // const topFourColors = [ '#4bc0c0', '#ff9f40', '#36a2eb', '#ffcd56' ]
-    //     // const otherColor = ['#ff6384']
-    //     // const none = ['#9966ff']
-    //     // let f = { labels: [ 'Red', 'Yellow', 'Blue' ],
-    //     //             datasets: [
-    //     //                 {
-    //     //                     label: ['one','two','three'],
-    //     //                     backgroundColor: [ '#3b9b73', '#bd5a4b', '#07b5d6', '#9b59b6' ],
-    //     //                     // borderColor: 'rgb(255, 99, 132)',
-    //     //                     data: [10,20,30]
-    //     //                 },
-    //     //             ],
-    //     // }
-    //     return {
-            
-    //     }
-    // },
-    // dataCompanyChart(state,getter){
-    //     return ''
-    // }
+
+        // NONE DATA
+        const noneData = {
+            labels: ['None'],
+            bg: ['#9966ff'],
+            values: none && none.length === 0 ? 0 : none.reduce(countUsers,0)
+        } 
+        
+        // OTHERS DATA
+        const others = list.splice(topFourColors.length)
+        const othersData = {
+            labels: ['Others'],
+            bg: ['#ff6384'],
+            values: others.reduce(countUsers,0)
+        }
+
+        
+        // TOP 4 Data
+        
+        const topData = {
+            labels: list.map(c => c.company),
+            bg: list.map((c,i) => topFourColors[i]),
+            values: list.map(c => c.users.length)
+        }
+
+        return {
+            noneData,
+            othersData,
+            topData
+        }
+    },
+    dataCompanyChart(state,getter){
+        let defaultValue = { 
+            labels: [],
+            datasets: [],
+        }
+        if (!getter.topCompanyByUser) return defaultValue
+
+        const { noneData, othersData, topData } = getter.topCompanyByUser
+        return { 
+            labels: [ 
+                    ...noneData.labels, 
+                    ...othersData.labels,
+                    ...topData.labels 
+                ],
+            datasets: [
+                {
+                    backgroundColor: [ 
+                        ...noneData.bg, 
+                        ...othersData.bg,
+                        ...topData.bg 
+                    ],
+                    data: [
+                        noneData.values, 
+                        othersData.values,
+                        ...topData.values 
+                    ]
+                },
+            ],
+        }
+    }
 }
 
 function getCompany(obj){
