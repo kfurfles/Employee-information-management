@@ -8,7 +8,10 @@ export default{
     },
     formatedUserList(state, getter){
         return getter.userList.map(u =>{
-
+            return {
+                ...u,
+                // salary: fSalary(u)
+            }
         })
     },
     insighUsers(state, getter, rootState, rootGetters){
@@ -59,7 +62,7 @@ export default{
             
             const highestMessage = `Highest salary: ${maxWords(highest,10)} || R$ ${fSalary(highest)}`
             // const leftMessage = `Highest salary: ${maxWords(highest,10)} ||  salary: R$${maxWords(lowest,10)}`
-            const lowestMessage = `Lowerest salary: ${maxWords(lowest,10)} || R$ ${fSalary(lowest)}`
+            const lowestMessage = `Lowest salary: ${maxWords(lowest,10)} || R$ ${fSalary(lowest)}`
     
             return {
                 ...defaultData,
@@ -97,6 +100,10 @@ export default{
             list: list,
         }
     },
+    othersCompanies(state,getter){
+        const { othersData: { listNames } } = getter.topCompanyByUser
+        return listNames
+    },
     topCompanyByUser(state,getter){
         const { none, list } = getter.companyData
         const topFourColors = [ '#4bc0c0', '#ff9f40', '#36a2eb', '#ffcd56' ]
@@ -120,6 +127,7 @@ export default{
         const others = list.splice(topFourColors.length)
         const othersData = {
             labels: ['Others'],
+            listNames: others.map(c => c.company),
             bg: ['#ff6384'],
             values: others.reduce(countUsers,0)
         }
@@ -194,6 +202,6 @@ function objToArray(obj){
     }) 
 }
 
-function fSalary({ salary }){
+function fSalary({ salary = '' }){
     return salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
 }

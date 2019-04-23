@@ -3,11 +3,13 @@
         <div class="d-flex align-item-center justify-center">
             <canvas ref="chart"></canvas>
         </div>
+        <div class="chart__others mt-2">*Others: <b>{{ othersCompanies.join(', ')}}</b></div>
     </ev-container>
 </template>
 
 <script>
 import Chart from 'chart.js';
+import { mapGetters } from 'vuex';
 
 const data = {"labels":["None","Others","google","everis","nubank","yahoo"],"datasets":[{"backgroundColor":["#9966ff","#ff6384","#4bc0c0","#ff9f40","#36a2eb","#ffcd56"],"data":[1,1,4,3,2,1]}]}
 export default {
@@ -23,6 +25,9 @@ export default {
         chartData(val){
             this.updateChart()
         }
+    },
+    computed: {
+        ...mapGetters('Dashboard',['othersCompanies']),
     },
     methods: {
         createChart(){
@@ -47,4 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.chart{
+    &__others{
+        text-transform: capitalize;
+        color: #444
+    }
+}
 </style>

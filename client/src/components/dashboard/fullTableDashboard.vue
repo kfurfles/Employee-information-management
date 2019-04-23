@@ -18,23 +18,19 @@ export default {
         fields(){
             return [ 
                 { key: 'actions', label: 'Actions' },
-                { key: 'name' },
-                { key: 'userName' },
-                { key: 'salary' },
-                { key: 'company' },
+                { key: 'name', sortable: true },
+                { key: 'userName', sortable: true },
+                { key: 'salary', sortable: true,
+                    formatter: (val) => this.currency(val) 
+                },
+                { key: 'company', sortable: true },
             ]
         },
-        // userList(){
-        //     const lower = str => str ? str.toLowerCase() : ''
-        //     const ownUserName = this.getUser.id
-        //     return  this.list.filter(({ userName, name }) => {
-        //         name = lower(name)
-        //         userName = lower(userName)
-        //         return !(ownUserName === name || ownUserName === userName)
-        //     }) 
-        // }
     },
     methods:{
+        currency(val = ''){
+            return  val ? val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : ''
+        },
         edit({ _id }){
             this.$router.push({ name: 'UpdateUser', params: { id: _id } })
         },

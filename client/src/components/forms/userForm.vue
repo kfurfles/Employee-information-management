@@ -6,6 +6,17 @@
                 <div class="col-12 col-sm-6 col-md-4" v-for="prop in formList" :key="prop">
                     <ev-input :value="getValue(schema[prop])" @input="setData($event, schema[prop])" :config="schema[prop]"></ev-input>
                 </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="form-group">
+                        <label for="selectCompany">Example multiple select</label>
+                        <select class="form-control" :value="value.company.toLowerCase()" @change="setData($event.target.value,{ dataPath: 'company' })" required id="selectCompany">
+                            <option value="" selected disabled>Select</option>
+                            <option :value="opt" v-for="opt in companyList" :key="opt">
+                                {{ opt }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -42,11 +53,13 @@ export default {
         }
     },
     data: () => ({
+        companyList: [ "apple", "everis", "yahoo", "google","microsoft", "nubank","facebook", "ibm", "oracle"],
+        companySchema: getParams('company','Company'),
         defaultSchema:{
             name: getParams("name","Name"),
             userName: getParams("userName","User name","userName"),
             // password: getParams("password","Password","password", true, "password"),
-            company: getParams("company","Company"),
+            // company: getParams("company","Company"),
             salary: getParams("salary","Salary","salary","number", true),
             city: getParams("address.city","City"),
             neighborhood: getParams("address.neighborhood","Neighborhood"),
@@ -76,6 +89,7 @@ export default {
             return schema
         }
     },
+    // ({ dataPath: 'company' })
     methods:{
         setData(value,{ dataPath }){
             let copyValue = Object.assign({},this.value)

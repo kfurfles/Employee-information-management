@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-7 dashboard__table">
-                <ev-dashboard-table :list="list"/>
+                <ev-dashboard-table :list="formatedUserList"/>
             </div>
             <div class="col-12 col-md-5">
                 <ev-dashboard-chart :chartData="dataCompanyChart"/>
@@ -20,12 +20,16 @@
 import DashboardTable from '@/components/dashboard/fullTableDashboard'
 import DashboardCard from '@/components/dashboard/card'
 import DashboardChart from '@/components/charts/companyDoughnut'
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
     computed:{
-        ...mapState('Users',['list']),
-        ...mapGetters('Dashboard',['allInsights','dataCompanyChart']),
+        ...mapGetters('Dashboard',[
+            'allInsights',
+            'dataCompanyChart',
+            'formatedUserList',
+            'othersCompanies'
+        ]),
     },
     components:{
         'ev-dashboard-table': DashboardTable,

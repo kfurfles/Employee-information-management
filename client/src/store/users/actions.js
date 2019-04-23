@@ -7,15 +7,17 @@ import {
     Get_User,
     Update_User, 
 } from '@/services/api'
+import { get } from 'lodash'
 
 export default{
     async getUsers({ commit, dispatch }){
         try {
             const list = await Get_Users()
             commit(mutations.SET_USER_LIST,list)
-        } catch (error) {
-            console.error(error)
-            if (GET_TOKEN()) {
+        } catch (err) {
+            let nonAuth = get(err,'response.status')
+            console.error(err)
+            if (GET_TOKEN() && nonAuth === 401) {
                 setTimeout(() => {
                     location.href = '/logout'
                 }, 2000);
