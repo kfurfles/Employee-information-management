@@ -8,6 +8,7 @@ import {
     Update_User, 
 } from '@/services/api'
 import { get } from 'lodash'
+import { isUndefined } from 'util';
 
 export default{
     async getUsers({ commit, dispatch }){
@@ -16,12 +17,16 @@ export default{
             commit(mutations.SET_USER_LIST,list)
         } catch (err) {
             let nonAuth = get(err,'response.status')
-            console.error(err)
+            
+            if (err.status == 'undefined') {
+                dispatch('Message/setErrorMessage', 'Server Not Found', { root: true })
+            }
+
             if (GET_TOKEN() && nonAuth === 401) {
                 setTimeout(() => {
                     location.href = '/logout'
                 }, 2000);
-                dispatch('Message/setErrorMessage', 'Desculpe sua sessão expirou 😅', { root: true })
+                dispatch('Message/setErrorMessage', 'Sorry your session has expired 😅', { root: true })
             }
         }
     },

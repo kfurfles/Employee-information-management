@@ -22,6 +22,7 @@ import DashboardCard from '@/components/dashboard/card'
 import DashboardChart from '@/components/charts/companyDoughnut'
 import { mapGetters } from 'vuex';
 
+import Axios from 'axios'
 export default {
     computed:{
         ...mapGetters('Dashboard',[
