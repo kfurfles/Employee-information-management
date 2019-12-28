@@ -31,8 +31,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap-vue/src/index.scss';
 @import "~bootstrap/scss/bootstrap";
+@import '~bootstrap-vue/src/index.scss';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

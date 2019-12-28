@@ -5,10 +5,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
             <label for="inputuser" class="sr-only">User</label>
             <input v-model="form.user" type="user" autocomplete="false" id="inputuser" class="form-control" placeholder="Username" required="" autofocus="">
-            
+
             <label for="inputPassword" class="sr-only">Senha</label>
             <input v-model="form.password" type="password" id="inputPassword" class="form-control mt-2" placeholder="Password" required="">
-            
+
+            <legend style="font-size: .7rem;margin-top: 10px;">user: test12345 || password: test12345</legend>
             <button :class="['btn btn-lg btn-primary btn-block mt-3 d-flex align-items-center justify-content-center',{ disabled: busy }]" type="submit">
                 <div class="spinner-grow text-light" role="status" v-if="busy">
                     <span class="sr-only">Loading</span>
